@@ -1,7 +1,5 @@
 # PokeAPI-JavaApp — Project Documentation
 
-**Language:** English
-
 ---
 
 ## Project overview

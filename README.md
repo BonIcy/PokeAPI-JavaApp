@@ -16,7 +16,7 @@ This document explains how each component works, how to use the app, and a roadm
 
 ---
 
-## Repository layout (recommended)
+## Repository layout
 
 ```
 PokeAPI-JavaApp/

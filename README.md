@@ -73,7 +73,7 @@ Design notes:
 * Keys are normalized to lowercase to avoid duplicates.
 * Methods: `save(key, data)`, `get(key)`, `contains(key)`, `clear()`.
 
-Recommendations to scale:
+Future implements to scale:
 
 * For a GUI or server, replace with a thread-safe `ConcurrentHashMap` and add TTL (time-to-live) eviction.
 * Optionally implement a disk-backed cache (simple file storage or SQLite) for offline use.
@@ -148,11 +148,6 @@ Current behavior:
 
 * Network errors print a short message and return an empty string.
 * Parser assumes required fields exist and may throw runtime exceptions if the structure is unexpected.
-
-Improvements recommended:
-
-* Add explicit error objects or exceptions from `PokemonAPIClient` (e.g., custom `ApiException`) so callers can react differently to 404 vs 500 vs network timeouts.
-* Add defensive checks in `PokemonParser` using `optString` / `optInt` or try/catch to avoid crashing when optional fields are missing.
 
 ---
 

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package pokeapi.main;
+import java.util.List;
 import pokeapi.api.PokemonAPIClient;
 import pokeapi.model.Pokemon;
 import pokeapi.parser.PokemonParser;
@@ -68,7 +69,8 @@ public class Main {
     }
 
     private static void randomPokemon(PokemonAPIClient client) {
-        String response = client.getRandomPokemonData();
+        String response = client.getPokemonData(String.valueOf((int)(Math.random()*800)+1));
+
         Pokemon p = PokemonParser.parsePokemon(response);
         printPokemonInfo(p);
     }
@@ -76,7 +78,7 @@ public class Main {
     private static void listByType(PokemonAPIClient client, Scanner sc) {
         System.out.print("Enter Pokémon type (e.g. fire, water): ");
         String type = sc.nextLine();
-        String response = client.getPokemonByType(type);
+        List<Pokemon> response = client.getPokemonsByType(type, 20);
         JSONObject obj = new JSONObject(response);
         JSONArray pokemonList = obj.getJSONArray("pokemon");
         System.out.println("Pokémon of type '" + type + "':");
@@ -90,7 +92,8 @@ public class Main {
         System.out.print("Enter generation number (1-9): ");
         int gen = sc.nextInt();
         sc.nextLine();
-        String response = client.getPokemonByGeneration(gen);
+        List<Pokemon> response = client.getPokemonsByGeneration(gen, 20);
+
         JSONObject obj = new JSONObject(response);
         JSONArray species = obj.getJSONArray("pokemon_species");
         System.out.println("Pokémon from generation " + gen + ":");
